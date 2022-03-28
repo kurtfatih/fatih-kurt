@@ -6,6 +6,10 @@ const enContent = {
     jobs: 'Jobs',
   },
   home: {
+    head: {
+      headTitle: 'Fatih Kurt- Home',
+      headDescription: 'Fatih Kurt Home Page',
+    },
     headTitle: 'Fatih Kurt- Home',
     heroHeadline: 'HI 👋 I AM FATIH',
     heroSubText: 'AND I AM LEARNEREST',
@@ -14,7 +18,10 @@ const enContent = {
     footerSubText: 'App Developer',
   },
   aboutme: {
-    headTitle: 'Fatih Kurt- About Me',
+    head: {
+      headTitle: 'Fatih Kurt- About Me',
+      headDescription: 'Fatih Kurt About Me Page',
+    },
     header: 'ABOUT ME',
     greetings: {
       headline: '# Greetings! I am Fatih Kurt 21 y.o 👋',
@@ -42,12 +49,18 @@ const enContent = {
     },
   },
   skills: {
-    headTitle: 'Fatih Kurt- Skills',
+    head: {
+      headTitle: 'Fatih Kurt- Skills',
+      headDescription: 'Fatih Kurt- Skills Page',
+    },
     header: 'Skills',
     subHeadline1: 'Languages',
   },
   jobs: {
-    headTitle: 'Fatih Kurt- Jobs',
+    head: {
+      headTitle: 'Fatih Kurt- Jobs',
+      headDescription: 'Fatih Kurt Jobs Page',
+    },
   },
   jobs_detail: {
     goToSourceButtonText: 'Go to project website',
@@ -64,7 +77,10 @@ const trContent = {
     jobs: 'Tecrübelerim',
   },
   home: {
-    headTitle: 'Fatih Kurt- Ana Sayfa',
+    head: {
+      headTitle: 'Fatih Kurt- Ana Sayfa',
+      headDescription: 'Fatih Kurt Ana Sayfa',
+    },
     heroHeadline: 'MERHABA 👋 BEN FATİH',
     heroSubText: 'VE BEN BİR OTODİDAKTIRIM',
     heroButtonText: "Benim CV'im 🔎",
@@ -72,7 +88,10 @@ const trContent = {
     footerSubText: 'App Developer',
   },
   aboutme: {
-    headTitle: 'Fatih Kurt- Hakkımda',
+    head: {
+      headTitle: 'Fatih Kurt- Hakkımda',
+      headDescription: 'Fatih Kurt Hakkımda Sayfası',
+    },
     header: 'HAKKIMDA',
     greetings: {
       headline: '# Merhaba! Ben Fatih Kurt 21 yaşındayım 👋',
@@ -100,12 +119,18 @@ const trContent = {
     },
   },
   skills: {
-    headTitle: 'Fatih Kurt- Beceriler',
+    head: {
+      headTitle: 'Fatih Kurt- Skills',
+      headDescription: 'Fatih Kurt- Skills Page',
+    },
     header: 'Beceriler',
     subHeadline1: 'Diller',
   },
   jobs: {
-    headTitle: 'Fatih Kurt- Tecrübelerim',
+    head: {
+      headTitle: 'Fatih Kurt- Tecrübelerim',
+      headDescription: 'Fatih Kurt Tecrübelerim Sayfası',
+    },
   },
   jobs_detail: {
     goToSourceButtonText: 'Kaynak koda git',

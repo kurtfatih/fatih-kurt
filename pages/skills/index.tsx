@@ -79,10 +79,11 @@ const Skills: NextPage<SkillsPropsI> = ({ backend, frontend, languages }) => {
   return (
     <>
       <Head>
-        <title>{translate('skills').headTitle}</title>
-        <meta name="description" content="Fatih Kurt Home Page" />
-        <meta name="description" content="Hi I Am Fatih And I Am Learnerest" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{translate('skills').head.headTitle}</title>
+        <meta
+          name="description"
+          content={translate('skills').head.headDescription}
+        />
       </Head>
       <MotionBox
         id="skills-container"

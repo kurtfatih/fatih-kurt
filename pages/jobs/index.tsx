@@ -82,10 +82,11 @@ const Jobs: NextPage<PostsProps> = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>{translate('jobs').headTitle}</title>
-        <meta name="description" content="Fatih Kurt Home Page" />
-        <meta name="description" content="Hi I Am Fatih And I Am Learnerest" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{translate('jobs').head.headTitle}</title>
+        <meta
+          name="description"
+          content={translate('jobs').head.headDescription}
+        />
       </Head>
       <Box h="100%" padding="3em" id="jobs-container">
         <Flex

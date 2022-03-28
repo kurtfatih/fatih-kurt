@@ -7,6 +7,7 @@ import { MediumText, SmallText, XSmallText } from '../../components/Typography'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useTranslate } from '../../hooks/useLanguage'
+import Head from 'next/head'
 
 interface JobDetailProps {
   _createdAt: string
@@ -76,160 +77,137 @@ const JobDetail: NextPage<JobDetailProps> = ({
   const router = useRouter()
   const translate = useTranslate(router.locale)
   return (
-    <Box
-      id={`detail-container-box-${_id}`}
-      h="90%"
-      padding="1em"
-      bgColor="white"
-    >
-      {/* header */}
-      <Box id="detail-header">
-        <XSmallText textProps={{ color: 'blackAlpha.500' }}>{title}</XSmallText>
-      </Box>
-      <Grid
-        height="95%"
-        templateRows="repeat(2, 1fr)"
-        templateColumns="repeat(5, 1fr)"
-        gap={5}
+    <>
+      <Head>
+        <title>{`${translate('jobs').head.headTitle} / ${title} `}</title>
+        <meta name="description" content={description} />
+      </Head>
+      <Box
+        id={`detail-container-box-${_id}`}
+        h="90%"
+        padding="1em"
+        bgColor="white"
       >
-        {imageCollection.map(({ asset }, index) => (
-          <GridItem key={index} rowSpan={1} colSpan={1}>
-            <Box position="relative" h="100%">
+        {/* header */}
+        <Box id="detail-header">
+          <XSmallText textProps={{ color: 'blackAlpha.500' }}>
+            {title}
+          </XSmallText>
+        </Box>
+        <Grid
+          height="95%"
+          templateRows="repeat(2, 1fr)"
+          templateColumns="repeat(5, 1fr)"
+          gap={5}
+        >
+          {imageCollection.map(({ asset }, index) => (
+            <GridItem key={index} rowSpan={1} colSpan={1}>
+              <Box position="relative" h="100%">
+                <Image
+                  alt="collection-image"
+                  src={asset.url}
+                  layout="fill"
+                  quality={100}
+                  objectFit="contain"
+                />
+              </Box>
+            </GridItem>
+          ))}
+          <GridItem rowSpan={2} colSpan={2}>
+            <Flex
+              flex="1"
+              h="100%"
+              justifyContent="space-between"
+              flexDirection="column"
+              id="right-wrapper"
+            >
+              <Flex flexDirection="column" id="top">
+                <Box alignSelf="flex-end" id="published-at">
+                  <XSmallText textProps={{ color: 'blackAlpha.500' }}>
+                    {translate('jobs_detail').createdAtText}
+                  </XSmallText>
+                  <XSmallText textProps={{ color: 'blackAlpha.500' }}>
+                    {new Date(_createdAt).toLocaleDateString(router.locale)}
+                  </XSmallText>
+                </Box>
+                <Box id="title-header" mb="1em">
+                  <MediumText
+                    textProps={{ fontWeight: 'bold', color: 'blackk' }}
+                  >
+                    {title}
+                  </MediumText>
+                </Box>
+                <Box id="tags">
+                  {tags.map((tag, index) => (
+                    <Badge
+                      m="0 0.1em 0 0.1em"
+                      colorScheme={
+                        index === 0
+                          ? 'linkedin'
+                          : index === 1
+                          ? 'orange'
+                          : 'facebook'
+                      }
+                      key={index}
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </Box>
+
+                <Box marginTop="3em" alignSelf="details">
+                  <Box id="descriptions">
+                    <SmallText
+                      textProps={{ color: 'black', lineHeight: 'taller' }}
+                    >
+                      {description}
+                    </SmallText>
+                  </Box>
+                </Box>
+              </Flex>
+              <Flex flexDirection="column" alignItems="flex-end">
+                <Box m="0.3em">
+                  <Link href={sourceUrl ?? '#'} passHref>
+                    <a target="_blank">
+                      <Button
+                        colorScheme="whatsapp"
+                        disabled={!sourceUrl}
+                        id="go-to-source-button"
+                      >
+                        {translate('jobs_detail').goToSourceButtonText}
+                      </Button>
+                    </a>
+                  </Link>
+                </Box>
+                <Box m="0.3em">
+                  <Link href={projectUrl ?? ''} passHref>
+                    <a target="_blank">
+                      <Button
+                        colorScheme="teal"
+                        disabled={!projectUrl}
+                        id="go-to-site-button"
+                      >
+                        {translate('jobs_detail').goToProjecButtonText}
+                      </Button>
+                    </a>
+                  </Link>
+                </Box>
+              </Flex>
+            </Flex>
+          </GridItem>
+          <GridItem colSpan={3}>
+            <Box h="100%" position="relative">
               <Image
-                alt="collection-image"
-                src={asset.url}
-                layout="fill"
-                quality={100}
                 objectFit="contain"
+                alt="collection-image"
+                src={mainImage}
+                layout="fill"
               />
             </Box>
           </GridItem>
-        ))}
-        <GridItem rowSpan={2} colSpan={2}>
-          <Flex
-            flex="1"
-            h="100%"
-            justifyContent="space-between"
-            flexDirection="column"
-            id="right-wrapper"
-          >
-            <Flex flexDirection="column" id="top">
-              <Box alignSelf="flex-end" id="published-at">
-                <XSmallText textProps={{ color: 'blackAlpha.500' }}>
-                  {translate('jobs_detail').createdAtText}
-                </XSmallText>
-                <XSmallText textProps={{ color: 'blackAlpha.500' }}>
-                  {new Date(_createdAt).toLocaleDateString(router.locale)}
-                </XSmallText>
-              </Box>
-              <Box id="title-header" mb="1em">
-                <MediumText textProps={{ fontWeight: 'bold', color: 'blackk' }}>
-                  {title}
-                </MediumText>
-              </Box>
-              <Box id="tags">
-                {tags.map((tag, index) => (
-                  <Badge
-                    m="0 0.1em 0 0.1em"
-                    colorScheme={
-                      index === 0
-                        ? 'linkedin'
-                        : index === 1
-                        ? 'orange'
-                        : 'facebook'
-                    }
-                    key={index}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </Box>
-
-              <Box marginTop="3em" alignSelf="details">
-                <Box id="descriptions">
-                  <SmallText
-                    textProps={{ color: 'black', lineHeight: 'taller' }}
-                  >
-                    {description}
-                  </SmallText>
-                </Box>
-              </Box>
-            </Flex>
-            <Flex flexDirection="column" alignItems="flex-end">
-              <Box m="0.3em">
-                <Link href={sourceUrl ?? '#'} passHref>
-                  <a target="_blank">
-                    <Button
-                      colorScheme="whatsapp"
-                      disabled={!sourceUrl}
-                      id="go-to-source-button"
-                    >
-                      {translate('jobs_detail').goToSourceButtonText}
-                    </Button>
-                  </a>
-                </Link>
-              </Box>
-              <Box m="0.3em">
-                <Link href={projectUrl ?? ''} passHref>
-                  <a target="_blank">
-                    <Button
-                      colorScheme="teal"
-                      disabled={!projectUrl}
-                      id="go-to-site-button"
-                    >
-                      {translate('jobs_detail').goToProjecButtonText}
-                    </Button>
-                  </a>
-                </Link>
-              </Box>
-            </Flex>
-          </Flex>
-        </GridItem>
-        <GridItem colSpan={3}>
-          <Box h="100%" position="relative">
-            <Image
-              objectFit="contain"
-              alt="collection-image"
-              src={mainImage}
-              layout="fill"
-            />
-          </Box>
-        </GridItem>
-      </Grid>
-      {/* left */}
-      {/* <Box id="content-container"> */}
-      {/* <Flex flex="2" id="content-wrapper">
-          <Flex flex="1" flexDir="row" id="left-wrapper">
-            <Stack w="100%" direction="row">
-              {imageCollection.map(({ asset }, index) => (
-                <Box key={index} id="collection-image-box">
-                  <Image
-                    alt="collection-image"
-                    src={asset.url}
-                    layout="responsive"
-                    height="100%"
-                    width="100%"
-                    quality={100}
-                    objectFit="contain"
-                  />
-                </Box>
-              ))}
-            </Stack>
-            {/* <Box id="main-image-box" w="100%">
-              <Image
-                alt="collection-image"
-                src={mainImage}
-                layout="responsive"
-                quality={100}
-                objectFit="cover"
-                width="100%"
-                height="100%"
-              />
-            </Box> */}
-      {/* </Flex>
-      {/* </Flex> */}
-      {/* </Box>  */}
-    </Box>
+        </Grid>
+      </Box>
+    </>
   )
 }
 export default JobDetail

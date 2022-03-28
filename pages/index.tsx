@@ -14,6 +14,7 @@ import {
 import { useRouter } from 'next/router'
 import { useTranslate } from '../hooks/useLanguage'
 import { motion } from 'framer-motion'
+import { route } from 'next/dist/server/router'
 
 const MotionBox = motion(Box)
 
@@ -38,10 +39,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{t('home').headTitle}</title>
-        <meta name="description" content="Fatih Kurt Home Page" />
-        <meta name="description" content="Hi I Am Fatih And I Am Learnerest" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{t('home').head.headTitle}</title>
+        <meta name="description" content={t('home').head.headDescription} />
+        <meta name="keywords" content={t('home').heroHeadline} />
+        <meta name="author" content="Fatih Kurt" />
       </Head>
       {/* Hero  */}
       <MotionBox
@@ -77,24 +78,27 @@ const Home: NextPage = () => {
             </MediumText>
           </Box>
         </Flex>
-        <Link href="/fatih-kurt-cv.pdf" locale={'en'} passHref>
-          <Button
-            disabled={router.locale === 'en'}
-            borderRadius="35px"
-            padding="1em"
-            background="purpleToBlue"
-            _hover={{
-              transform: 'scale(1.1)',
-            }}
-            _active={{
-              background: 'black',
-            }}
-          >
-            <XSmallText textProps={{ fontWeight: 'hairline' }}>
-              {t('home').heroButtonText}
-            </XSmallText>
-          </Button>
-        </Link>
+        <Button
+          disabled={router.locale === 'en'}
+          onClick={() =>
+            router.push('/fatih-kurt-cv.pdf', '/fatih-kurt-cv.pdf', {
+              locale: 'en',
+            })
+          }
+          borderRadius="35px"
+          padding="1em"
+          background="purpleToBlue"
+          _hover={{
+            transform: 'scale(1.1)',
+          }}
+          _active={{
+            background: 'black',
+          }}
+        >
+          <XSmallText textProps={{ fontWeight: 'hairline' }}>
+            {t('home').heroButtonText}
+          </XSmallText>
+        </Button>
       </MotionBox>
       <MotionBox
         variants={variants} // Pass the variant object into Framer Motion

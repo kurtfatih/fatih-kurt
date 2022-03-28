@@ -22,10 +22,11 @@ const About: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{translate('aboutme').headTitle}</title>
-        <meta name="description" content="Fatih Kurt Home Page" />
-        <meta name="description" content="Hi I Am Fatih And I Am Learnerest" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{translate('aboutme').head.headTitle}</title>
+        <meta
+          name="description"
+          content={translate('aboutme').head.headDescription}
+        />
       </Head>
       <MotionBox
         variants={variants} // Pass the variant object into Framer Motion
