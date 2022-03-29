@@ -63,8 +63,8 @@ const enContent = {
     },
   },
   jobs_detail: {
-    goToSourceButtonText: 'Go to project website',
-    goToProjecButtonText: 'Go to source code',
+    goToSourceButtonText: 'Go to source code',
+    goToProjectButtonText: 'Go to project website',
     createdAtText: 'Created At',
   },
 }
@@ -134,7 +134,7 @@ const trContent = {
   },
   jobs_detail: {
     goToSourceButtonText: 'Kaynak koda git',
-    goToProjecButtonText: 'Proje sayfasına git',
+    goToProjectButtonText: 'Proje sayfasına git',
     createdAtText: 'Oluşturuldu',
   },
 }

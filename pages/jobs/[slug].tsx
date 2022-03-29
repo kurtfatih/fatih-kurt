@@ -220,7 +220,7 @@ const JobDetail: NextPage<JobDetailProps> = ({
                         disabled={!projectUrl}
                         id="go-to-site-button"
                       >
-                        {translate('jobs_detail').goToProjecButtonText}
+                        {translate('jobs_detail').goToProjectButtonText}
                       </Button>
                     </a>
                   </Link>
