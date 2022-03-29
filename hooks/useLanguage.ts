@@ -1,4 +1,4 @@
-import { enContent, trContent } from '../content/text'
+import { enContent, trContent } from '../constant/content/text'
 
 export const useTranslate = (locale?: string) => {
   const translate = <

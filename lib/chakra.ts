@@ -1,7 +1,9 @@
+import { GlobalStyleProps } from '@chakra-ui/theme-tools'
+
 // add an alias for object responsive prop
 export const chakraConfig = {
   styles: {
-    global: (props: any) => ({
+    global: (props: GlobalStyleProps) => ({
       [`@media screen and (max-width: ${props.theme.breakpoints.xl})`]: {
         body: {
           backgroundPosition: '25%',
