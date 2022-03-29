@@ -140,6 +140,17 @@ const NavBarItemWrapper: React.FC<{
       href: '/jobs',
     },
   ]
+  const selectLangValue = (selectedLangValue: string) => {
+    if (selectedLangValue === 'en') {
+      router.push(router.asPath, router.asPath, {
+        locale: 'en',
+      })
+    }
+    if (selectedLangValue === 'tr') {
+      router.push(router.asPath, router.asPath, { locale: 'tr' })
+    }
+  }
+  const langValue = router.locale?.toLowerCase() === 'tr' ? 'tr' : 'en'
 
   return (
     <UnorderedList
@@ -198,20 +209,14 @@ const NavBarItemWrapper: React.FC<{
       ))}
       <Flex w="max-content" alignSelf={isSideBar ? 'flex-end' : 'unset'}>
         <Select
+          id="language-selector"
           alignSelf="flex-end"
-          onChange={({ target }) => {
-            if (!target.value) return
-            if (target.value === 'en') {
-              router.push(router.asPath, router.asPath, {
-                locale: 'en',
-              })
-            }
-            if (target.value === 'tr') {
-              router.push(router.asPath, router.asPath, { locale: 'tr' })
-            }
+          onChange={(e) => {
+            selectLangValue(e.target.value)
           }}
           bgColor="white"
           variant="flashed"
+          value={langValue}
         >
           <option value="en">EN</option>
           <option value="tr">TR</option>
