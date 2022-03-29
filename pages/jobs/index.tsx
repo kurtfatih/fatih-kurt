@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<PostsProps> = async ({
       }
     }
 
-    return { props: { posts } }
+    return { props: { posts }, revalidate: 30 }
   } catch (e) {
     return {
       notFound: true,

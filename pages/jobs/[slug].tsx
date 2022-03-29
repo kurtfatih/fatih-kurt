@@ -22,6 +22,32 @@ interface JobDetailProps {
   sourceUrl: string
 }
 
+export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
+  try {
+    const isTurkish = locale?.toLowerCase() === 'tr'
+    const title = isTurkish ? 'content.title.tr' : 'content.title.en'
+    const description = isTurkish
+      ? 'content.description.tr_long'
+      : 'content.description.en_long'
+    const query = `
+    *[_type == "jobs" && slug.current == "${params?.slug}"][0] {_createdAt,_id,"title":${title},"description":${description},"slug":slug.current,"mainImage":image.asset->url,"imageCollection":image_collection[]{asset->{url}},"tags":content.tags,"projectUrl":project_url,"sourceUrl":source_url}
+  `
+    const job = await sanityClient.fetch(query)
+
+    if (!job) {
+      return {
+        notFound: true,
+      }
+    }
+
+    return { props: { ...job }, revalidate: 30 }
+  } catch (e) {
+    return {
+      notFound: true,
+    }
+  }
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const jobs = await sanityClient.fetch(
     `
@@ -40,27 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const paths = [...pathsEn, ...pathsTr]
 
-  return { paths, fallback: false }
-}
-
-export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
-  try {
-    const isTurkish = locale?.toLowerCase() === 'tr'
-    const title = isTurkish ? 'content.title.tr' : 'content.title.en'
-    const description = isTurkish
-      ? 'content.description.tr_long'
-      : 'content.description.en_long'
-    const query = `
-    *[_type == "jobs" && slug.current == "${params?.slug}"][0] {_createdAt,_id,"title":${title},"description":${description},"slug":slug.current,"mainImage":image.asset->url,"imageCollection":image_collection[]{asset->{url}},"tags":content.tags,"projectUrl":project_url,"sourceUrl":source_url}
-  `
-    const job = await sanityClient.fetch(query)
-
-    return { props: { ...job } }
-  } catch (e) {
-    return {
-      notFound: true,
-    }
-  }
+  return { paths, fallback: 'blocking' }
 }
 
 const JobDetail: NextPage<JobDetailProps> = ({
