@@ -64,6 +64,7 @@ export const getStaticProps: GetStaticProps<SkillsPropsI> = async () => {
         frontend: frontendSkills,
         languages: languagesSkills,
       },
+      revalidate: 60,
     }
   } catch (e) {
     return {
