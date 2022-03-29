@@ -2,7 +2,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import sanityClient from '../../client'
-import { Badge, Box, Button, Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Badge, Box, Button, Flex } from '@chakra-ui/react'
 import { MediumText, SmallText, XSmallText } from '../../components/Typography'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -89,10 +89,11 @@ const JobDetail: NextPage<JobDetailProps> = ({
         <meta name="description" content={description} />
       </Head>
       <Box
+        h="inherit"
         id={`detail-container-box-${_id}`}
-        h="90%"
         padding="1em"
         bgColor="white"
+        overflowWrap="break-word"
       >
         {/* header */}
         <Box id="detail-header">
@@ -100,26 +101,52 @@ const JobDetail: NextPage<JobDetailProps> = ({
             {title}
           </XSmallText>
         </Box>
-        <Grid
-          height="95%"
-          templateRows="repeat(2, 1fr)"
-          templateColumns="repeat(5, 1fr)"
-          gap={5}
+        <Flex
+          id="detail-wrapper"
+          justifyContent="space-between"
+          h="100%"
+          flexDir={{ xs: 'column', lg: 'row' }}
         >
-          {imageCollection.map(({ asset }, index) => (
-            <GridItem key={index} rowSpan={1} colSpan={1}>
-              <Box position="relative" h="100%">
+          <Flex
+            id="left"
+            w={{ xs: '100%', lg: '70%' }}
+            h="100%"
+            flexDir="column"
+          >
+            <Flex
+              flexDir={{ xs: 'column', lg: 'row' }}
+              display={{ xs: 'none', lg: 'flex' }}
+              h="50%"
+              w="100%"
+              id="image-collection-wrapper"
+            >
+              {imageCollection.map(({ asset }, index) => (
+                <Box key={index} w="100%" position="relative">
+                  <Image
+                    objectFit="contain"
+                    alt="collection-image"
+                    src={asset.url}
+                    layout="fill"
+                  />
+                </Box>
+              ))}
+            </Flex>
+            <Flex
+              h={{ xs: '100%', lg: '50%' }}
+              w="100%"
+              id="main-image-container"
+            >
+              <Box w="100%" position="relative">
                 <Image
-                  alt="collection-image"
-                  src={asset.url}
-                  layout="fill"
-                  quality={100}
                   objectFit="contain"
+                  alt="collection-image"
+                  src={mainImage}
+                  layout="fill"
                 />
               </Box>
-            </GridItem>
-          ))}
-          <GridItem rowSpan={2} colSpan={2}>
+            </Flex>
+          </Flex>
+          <Flex id="right" w={{ xs: '100%', lg: '30%' }}>
             <Flex
               flex="1"
               h="100%"
@@ -136,7 +163,7 @@ const JobDetail: NextPage<JobDetailProps> = ({
                     {new Date(_createdAt).toLocaleDateString(router.locale)}
                   </XSmallText>
                 </Box>
-                <Box id="title-header" mb="1em">
+                <Box id="title-header" maxW="70%" mb="1em">
                   <MediumText
                     textProps={{ fontWeight: 'bold', color: 'blackk' }}
                   >
@@ -171,7 +198,7 @@ const JobDetail: NextPage<JobDetailProps> = ({
                   </Box>
                 </Box>
               </Flex>
-              <Flex flexDirection="column" alignItems="flex-end">
+              <Flex flexDirection="column" padding="1em" alignItems="flex-end">
                 <Box m="0.3em">
                   <Link href={sourceUrl ?? '#'} passHref>
                     <a target="_blank">
@@ -200,18 +227,8 @@ const JobDetail: NextPage<JobDetailProps> = ({
                 </Box>
               </Flex>
             </Flex>
-          </GridItem>
-          <GridItem colSpan={3}>
-            <Box h="100%" position="relative">
-              <Image
-                objectFit="contain"
-                alt="collection-image"
-                src={mainImage}
-                layout="fill"
-              />
-            </Box>
-          </GridItem>
-        </Grid>
+          </Flex>
+        </Flex>
       </Box>
     </>
   )
