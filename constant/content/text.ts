@@ -96,7 +96,7 @@ const trContent = {
     greetings: {
       headline: '# Merhaba! Ben Fatih Kurt 21 yaşındayım 👋',
       subtext1:
-        "Full-Stack olarak mobile/web uygulama geliştiricisiyim 👨🏻‍ React.js & Node.js & GraphQL meraklısıyım (Kişisel tercihim Typescript'dir ❤️ ).",
+        "Full-Stack olarak mobile/web uygulama geliştiricisiyim 👨🏻‍ React.js & Node.js & GraphQL meraklısıyım (kişisel tercihim Typescript'dir ❤️ ).",
       subtext2: '🧰 3 yıldır uygulamalara profesyonel olarak şekil veriyorum.',
       subtext3: '💻 İşletim Sistemi: MacOS / M1 Macbook.',
       subtext4: '🗒️ IDE: VIM + VSCode (with Vim Extension).',
@@ -113,9 +113,9 @@ const trContent = {
       subText2: 'İngilizce (akıcı konuşma)',
     },
     quote: {
-      headline: "# Otodidakter'ın Anlamı Ne?",
+      headline: '# Otodidakterın Anlamı Ne?',
       subText1:
-        "Otodidakter'ı kısaca kendi başına öğrenmeye bağımlı olan kişi olarak tanımlıyorum.",
+        'Otodidakterı kısaca kendi başına öğrenmeye bağımlı olan kişi olarak tanımlıyorum.',
     },
   },
   skills: {
