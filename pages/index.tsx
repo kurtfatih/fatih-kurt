@@ -78,12 +78,16 @@ const Home: NextPage = () => {
           </Box>
         </Flex>
         <Button
-          disabled={router.locale === 'en'}
-          onClick={() =>
-            router.push('/fatih-kurt-cv.pdf', '/fatih-kurt-cv.pdf', {
-              locale: 'en',
-            })
-          }
+          onClick={() => {
+            if (router.locale === 'en') {
+              return router.push('/en/fatih-kurt-cv.pdf')
+            }
+            if (router.locale === 'tr') {
+              return router.push('/fatih-kurt-cv.pdf', '/fatih-kurt-cv.pdf', {
+                locale: 'en',
+              })
+            }
+          }}
           borderRadius="35px"
           padding="1em"
           background="purpleToBlue"
