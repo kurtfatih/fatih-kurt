@@ -80,7 +80,7 @@ const Home: NextPage = () => {
         <Button
           onClick={() => {
             if (router.locale === 'en') {
-              return router.push('/en/fatih-kurt-cv.pdf')
+              return router.push('/eng/fatih-kurt-cv.pdf')
             }
             if (router.locale === 'tr') {
               return router.push('/fatih-kurt-cv.pdf', '/fatih-kurt-cv.pdf', {
