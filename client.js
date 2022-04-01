@@ -1,8 +1,8 @@
-import sanityClient from "@sanity/client"
+import sanityClient from '@sanity/client'
 
 export default sanityClient({
-  projectId: "8qrduxjr",
-  dataset: "production", // or the name you chose in step 1
-  useCdn: true ,// `false` if you want to ensure fresh data
-  apiVersion: '2021-08-31'
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: process.env.SANITY_PROJECT_DATA_SET, // or the name you chose in step 1
+  useCdn: process.env.SANITY_PROJECT_USE_CDN, // `false` if you want to ensure fresh data
+  apiVersion: process.env.SANITY_PROJECT_API_VERSION,
 })
