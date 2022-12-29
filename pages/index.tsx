@@ -12,7 +12,7 @@ import {
   XSmallText,
 } from '../components/Typography'
 import { useRouter } from 'next/router'
-import { useTranslate } from '../hooks/useLanguage'
+import { useTranslate } from '../hooks/useTranslate.ts'
 import { motion } from 'framer-motion'
 
 const MotionBox = motion(Box)

@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 import { GetStaticProps, NextPage } from 'next/types'
 import * as React from 'react'
 import { LargeText, XSmallText } from '../../components/Typography'
-import { useTranslate } from '../../hooks/useLanguage'
+import { useTranslate } from '../../hooks/useTranslate.ts'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
 

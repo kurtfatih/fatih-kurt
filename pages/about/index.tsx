@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { NextPage } from 'next/types'
 import * as React from 'react'
 import { LargeText, MediumText, SmallText } from '../../components/Typography'
-import { useTranslate } from '../../hooks/useLanguage'
+import { useTranslate } from '../../hooks/useTranslate.ts'
 
 const MotionBox = motion(Flex)
 

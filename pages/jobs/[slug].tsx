@@ -6,7 +6,7 @@ import { Badge, Box, Button, Flex } from '@chakra-ui/react'
 import { MediumText, SmallText, XSmallText } from '../../components/Typography'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useTranslate } from '../../hooks/useLanguage'
+import { useTranslate } from '../../hooks/useTranslate.ts'
 import Head from 'next/head'
 
 interface JobDetailProps {
