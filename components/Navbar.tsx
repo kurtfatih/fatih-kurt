@@ -24,7 +24,7 @@ import { FocusableElement } from '@chakra-ui/theme-tools/node_modules/@chakra-ui
 
 import GitHubLogo from '../public/githubLogo.png'
 import LinkedInLogo from '../public/linkedin.svg'
-import { useTranslate } from '../hooks/useTranslate.ts'
+import { useTranslate } from '../hooks/useTranslate'
 import HamburgerIcon from '../public/hamburger.svg'
 import { MediumText, SmallText } from './Typography'
 

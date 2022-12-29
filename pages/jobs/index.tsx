@@ -5,7 +5,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import { GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { useTranslate } from '../../hooks/useTranslate.ts'
+import { useTranslate } from '../../hooks/useTranslate'
 
 interface PostsProps {
   posts: {
