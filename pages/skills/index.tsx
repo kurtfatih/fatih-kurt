@@ -4,8 +4,10 @@ import {
   CircularProgressLabel,
   Divider,
   Flex,
+  HStack,
   ListItem,
   UnorderedList,
+  VStack,
 } from '@chakra-ui/react'
 import sanityClient from '../../client'
 import { useRouter } from 'next/router'
@@ -16,7 +18,7 @@ import { useTranslate } from '../../hooks/useTranslate'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
 
-const MotionBox = motion(Flex)
+const MotionBox = motion(VStack)
 
 const variants = {
   hidden: { opacity: 0 },
@@ -93,92 +95,64 @@ const Skills: NextPage<SkillsPropsI> = ({ backend, frontend, languages }) => {
         animate="enter" // Animated state to variants.enter
         exit="exit"
         transition={{ duration: 0.3 }}
+        rowGap={{ base: '1em', '2xl': '5em' }}
+        px={{ base: '1em', md: '5em' }}
+        pb={{ base: '3em', md: '5em' }}
+        spacing="0"
+        h="auto"
         justifyContent="space-between"
-        padding={{ xs: '0.2em', lg: '1.5em' }}
-        flexDirection="column"
-        h="100%"
       >
-        <Box id="skills-header">
+        <VStack
+          w="full"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          id="skills-header"
+        >
           <Flex justifyContent="center">
             <LargeText textProps={{ fontWeight: 'hairline' }}>
               {translate('skills').header}
             </LargeText>
           </Flex>
-          <Flex m={{ xs: '0.5em', lg: '0' }} justifyContent="center">
-            <Divider w={{ xs: '100%', lg: '25%' }} />
-          </Flex>
-        </Box>
+          <Divider mt="1em" w={{ xs: '100%', lg: '100%' }} />
+        </VStack>
 
-        <Box margin="1em 0 1em 0" id="languages">
-          <Flex
-            flexDirection={{
-              xs: 'column',
-              lg: 'row',
-            }}
-            justifyContent="space-between"
+        <VStack w="full" rowGap="1em" id="languages">
+          <HStack w="full" justifyContent="center">
+            <LargeText>{translate('skills').subHeadline1}</LargeText>
+            <Divider mt="1em" w={{ xs: '100%', lg: '100%' }} />
+          </HStack>
+          <VStack
+            w="full"
+            flexWrap="wrap"
+            justifyContent="flex-start"
             alignItems="flex-start"
-            rowGap="0.6em"
-            width={{ xs: '100%', lg: '50%' }}
-            margin="auto"
           >
-            <Flex mb={{ md: '1em', lg: 'unset' }} alignSelf="flex-start">
-              <LargeText>{translate('skills').subHeadline1}</LargeText>
-            </Flex>
-            <Flex w={{ xs: '100%', lg: 'auto' }}>
-              <SkillsShowCase skills={languages.skills} />
-            </Flex>
-          </Flex>
-        </Box>
-        <Flex m={{ xs: '0.5em', lg: '0' }} justifyContent="center">
-          <Divider w={{ xs: '100%', lg: '50%' }} />
-        </Flex>
-        <Box margin="1em 0 1em 0" id="frontend">
-          <Flex
-            flexDirection={{
-              xs: 'column',
-              lg: 'row',
-            }}
-            justifyContent={{
-              xs: 'space-between',
-              lg: 'space-around',
-            }}
-            rowGap="0.5em"
-            width={{ xs: '100%', lg: '90%' }}
-            margin="auto"
+            <SkillsShowCase skills={languages.skills} />
+          </VStack>
+        </VStack>
+        <VStack w="full" id="frontend">
+          <HStack w="full" justifyContent="center">
+            <LargeText>Frontend</LargeText>
+            <Divider mt="1em" w={{ xs: '100%', lg: '100%' }} />
+          </HStack>
+          <VStack w="full" justifyContent="flex-start" alignItems="flex-start">
+            <SkillsShowCase skills={frontend.skills} />
+          </VStack>
+        </VStack>
+        <VStack w="full" id="backend">
+          <HStack w="full" justifyContent="center">
+            <LargeText>Backend</LargeText>
+            <Divider mt="1em" w={{ xs: '100%', lg: '100%' }} />
+          </HStack>
+          <VStack
+            w="full"
+            flexWrap="wrap"
+            justifyContent="flex-start"
+            alignItems="flex-start"
           >
-            <Flex mb="1em" alignSelf="flex-start">
-              <LargeText>Frontend</LargeText>
-            </Flex>
-            <Flex>
-              <SkillsShowCase skills={frontend.skills} />
-            </Flex>
-          </Flex>
-        </Box>
-        <Flex m={{ xs: '0.5em', lg: '0' }} justifyContent="center">
-          <Divider w={{ xs: '100%', lg: '75%' }} />
-        </Flex>
-        <Box margin="1em 0 1em 0" id="backend">
-          <Flex
-            flexDirection={{
-              xs: 'column',
-              lg: 'row',
-            }}
-            justifyContent="space-between"
-            width="100%"
-            margin="auto"
-            rowGap="0.5em"
-          >
-            <Flex mb="1em" alignSelf="flex-start">
-              <LargeText>Backend</LargeText>
-            </Flex>
-            <Flex>
-              <SkillsShowCase skills={backend.skills} />
-            </Flex>
-          </Flex>
-        </Box>
-        <Flex m={{ xs: '0.5em', lg: '0' }} justifyContent="center">
-          <Divider w="100%" />
-        </Flex>
+            <SkillsShowCase skills={backend.skills} />
+          </VStack>
+        </VStack>
       </MotionBox>
     </>
   )
@@ -193,39 +167,42 @@ interface SkillsShowCaseProps {
 }
 const SkillsShowCase: React.FC<SkillsShowCaseProps> = ({ skills }) => {
   return (
-    <Flex justifyContent="space-around" flexDir="row">
-      <UnorderedList
-        display="flex"
-        flexWrap={{ xs: 'wrap', md: 'nowrap' }}
-        color="#fff"
-        margin="0"
-      >
-        {skills.map(({ _key, skill_name, skill_value }) => {
-          return (
-            <ListItem
-              alignItems="center"
-              display="flex"
-              flexDir="column"
-              key={_key}
-              m="0.2em"
+    <HStack
+      flexWrap="wrap"
+      justifyContent={{ base: 'center', md: 'flex-start' }}
+      alignItems={{ base: 'center', md: 'flex-start' }}
+      rowGap="0.5em"
+      columnGap="0.5em"
+      color="#fff"
+      margin="0"
+      spacing="0"
+      w="full"
+    >
+      {skills.map(({ _key, skill_name, skill_value }) => {
+        return (
+          <VStack
+            alignItems="center"
+            display="flex"
+            flexDir="column"
+            key={_key}
+            textAlign="center"
+          >
+            <CircularProgress
+              value={skill_value}
+              id={skill_name}
+              color={skill_value > 50 ? 'green' : 'orange'}
+              size="100px"
+              thickness="5px"
             >
-              <CircularProgress
-                value={skill_value}
-                id={skill_name}
-                color={skill_value > 50 ? 'green' : 'orange'}
-                size="100px"
-                thickness="5px"
-              >
-                <CircularProgressLabel color="#fff">
-                  {skill_value}%
-                </CircularProgressLabel>
-              </CircularProgress>
-              <XSmallText>{skill_name}</XSmallText>
-            </ListItem>
-          )
-        })}
-      </UnorderedList>
-    </Flex>
+              <CircularProgressLabel color="#fff">
+                {skill_value}%
+              </CircularProgressLabel>
+            </CircularProgress>
+            <XSmallText>{skill_name}</XSmallText>
+          </VStack>
+        )
+      })}
+    </HStack>
   )
 }
 
