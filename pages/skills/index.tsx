@@ -1,12 +1,9 @@
 import {
-  Box,
   CircularProgress,
   CircularProgressLabel,
   Divider,
   Flex,
   HStack,
-  ListItem,
-  UnorderedList,
   VStack,
 } from '@chakra-ui/react'
 import sanityClient from '../../client'
