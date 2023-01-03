@@ -33,7 +33,6 @@ export const getStaticProps: GetStaticProps<PostsProps> = async ({
   `
   try {
     const posts = await sanityClient.fetch(query)
-    console.log(posts)
     if (posts.length === 0) {
       return {
         notFound: true,
