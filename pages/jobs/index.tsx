@@ -29,10 +29,11 @@ export const getStaticProps: GetStaticProps<PostsProps> = async ({
     : 'content.description.en'
 
   const query = `
-    *[_type == "jobs"] | order(_createdAt asc) {_createdAt,_id,"title":${title},"description":${description},"slug":slug.current,"imageUrl": image.asset->url,"tags":content.tags}
+    *[_type == "jobs"] | order(order asc) {_createdAt,_id,order,"title":${title},"description":${description},"slug":slug.current,"imageUrl": image.asset->url,"tags":content.tags}
   `
   try {
     const posts = await sanityClient.fetch(query)
+    console.log(posts)
     if (posts.length === 0) {
       return {
         notFound: true,
