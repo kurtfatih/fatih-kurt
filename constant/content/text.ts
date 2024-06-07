@@ -24,10 +24,10 @@ const enContent = {
     },
     header: 'ABOUT ME',
     greetings: {
-      headline: '# Greetings! I am Fatih Kurt 22 y.o 👋',
+      headline: '# Greetings! I am Fatih Kurt 23 y.o 👋',
       subtext1:
         'I am a Full-Stack mobile/web app developer 👨🏻‍ React.js & Node.js & GraphQL Enthusiast. (My personal preference is Typescript mostly ❤️ )',
-      subtext2: '🧰 I have been shaping the apps, professionally, for 3 years:',
+      subtext2: '🧰 I have been shaping the apps, professionally, for 5 years:',
       subtext3: '💻 OS: MacOS / M1 Macbook.',
       subtext4: '🗒️ Text Editor: VIM + VSCode (with Vim Extension).',
     },
@@ -94,10 +94,10 @@ const trContent = {
     },
     header: 'HAKKIMDA',
     greetings: {
-      headline: '# Merhaba! Ben Fatih Kurt 22 yaşındayım 👋',
+      headline: '# Merhaba! Ben Fatih Kurt 23 yaşındayım 👋',
       subtext1:
         "Full-Stack olarak mobile/web uygulama geliştiricisiyim 👨🏻‍ React.js & Node.js & GraphQL meraklısıyım (kişisel tercihim Typescript'dir ❤️ ).",
-      subtext2: '🧰 3 yıldır uygulamalara profesyonel olarak şekil veriyorum.',
+      subtext2: '🧰 5 yıldır uygulamalara profesyonel olarak şekil veriyorum.',
       subtext3: '💻 İşletim Sistemi: MacOS / M1 Macbook.',
       subtext4: '🗒️ IDE: VIM + VSCode (with Vim Extension).',
     },
